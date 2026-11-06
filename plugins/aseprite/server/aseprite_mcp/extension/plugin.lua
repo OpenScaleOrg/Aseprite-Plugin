@@ -93,8 +93,10 @@ end
 -- so restart the socket ourselves on close/error, at most every 3 seconds.
 -- ponytail: older Aseprite builds have no Timer, so recovery rides on the socket's own events.
 local function restart()
-  if os.clock() - last_restart < 3 then return end
-  last_restart = os.clock()
+  -- os.time (wall clock), not os.clock: CPU time barely advances in an idle
+  -- Aseprite, which used to suppress reconnects for minutes after a drop.
+  if os.time() - last_restart < 3 then return end
+  last_restart = os.time()
   ws:close()
   ws:connect()
 end

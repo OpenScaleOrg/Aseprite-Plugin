@@ -46,5 +46,6 @@ The extension installs itself into Aseprite the first time the server starts. As
 ## Troubleshooting
 
 - **A tool times out with "A dialog may be open".** Aseprite is waiting on a prompt, such as a permission request. Ask the user to answer it.
-- **Changes don't appear in the window.** Run `live_status`. If it is not connected, Aseprite was opened before the extension was installed, so it needs a restart. Port 45654 can also be taken by another Claude session's server.
+- **Changes don't appear in the window.** Run `live_status`. Each call first claims the live link from any other Claude session that holds it, so if it still says not connected, Aseprite was opened before the extension was installed and needs a restart. Stop and tell the user; do not keep drawing into the file on disk.
+- **Never launch Aseprite yourself.** Don't open the file in a new window with a shell command. Two windows on the same file get out of sync, and scripts only go to the window that connected last. If the open tab is stale, ask the user to use File → Revert.
 - **Tabs titled like the sprite appear and close.** That is expected: some analysis tools work on a temporary copy, which is closed afterwards.

@@ -2,7 +2,7 @@
   "name": "aseprite-mcp-live",
   "displayName": "Aseprite MCP Live",
   "description": "Runs aseprite-mcp tool scripts in the open window so Claude's changes show live",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": { "name": "Suman Debnath" },
   "contributes": {
     "scripts": [ { "path": "./plugin.lua" } ]
