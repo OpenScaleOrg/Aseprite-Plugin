@@ -35,6 +35,10 @@ The extension installs itself into Aseprite the first time the server starts. As
 
 - **One tool call is one undo step.** The user can press Ctrl+Z to take back exactly one of your steps, so tell them that when it helps.
 - **Work in visible passes** (silhouette, then flats, shading, details, animation) so the user sees the piece come together, and say what each pass does.
+- **One small thing per call.** The window only redraws when a call returns, so a script that paints the whole scene shows up all at once. Each call should add one object, one layer, one shading pass or one frame. Write a script, run it, then write the next one. Never write all the scripts first and run them at the end.
+  - Prefer the dedicated tools (`draw_rows`, `draw_rectangle_at`, `draw_ellipse_at`, `fill_area_at`, ...). Every one of them is a single visible step.
+  - In live mode `run_lua_script` refuses scripts over 40 code lines. Keep helper functions short, since every script has to redefine its own.
+  - A 64×64 scene typically takes 10–25 calls. That's expected: the user is watching it build.
 - **Every step is saved** to the file, which keeps `view_sprite` and the export tools in sync. Those still read the saved file through a hidden Aseprite.
 - **The user may edit too.** Check with `view_sprite` or `read_rows` before redrawing an area, and do not overwrite their changes without asking.
 - **Don't change their view.** Avoid switching tabs, frames or layers in the window unless the task needs it.

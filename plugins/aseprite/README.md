@@ -81,3 +81,4 @@ All of these are environment variables.
 | `ASEPRITE_PATH` | auto | The Aseprite executable used by batch-mode tools |
 | `ASEPRITE_LIVE_PORT` | `45654` | The live bridge port. The extension's URL must match it. |
 | `ASEPRITE_TIMEOUT_SECONDS` | `60` | How long a single tool call may run |
+| `ASEPRITE_LIVE_MAX_LUA_LINES` | `40` | In live mode, the longest `run_lua_script` allowed, so Claude draws in visible steps |

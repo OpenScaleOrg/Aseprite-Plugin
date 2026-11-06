@@ -1,6 +1,16 @@
 import os
+from ..core import live
 from ..core.commands import AsepriteCommand
 from .. import mcp
+
+# In live mode the window only redraws when a call returns, so one big script
+# shows the whole picture at once. Cap scripts so work arrives in visible steps.
+MAX_LIVE_LINES = int(os.getenv("ASEPRITE_LIVE_MAX_LUA_LINES", "40"))
+
+
+def _code_lines(script: str) -> int:
+    return sum(1 for line in script.splitlines()
+               if line.strip() and not line.strip().startswith("--"))
 
 
 @mcp.tool()
@@ -25,6 +35,11 @@ async def run_lua_script(script: str, filename: str = "") -> str:
     - Coordinates on cel images are cel-local: offset sprite-global
       coordinates by cel.position before getPixel/putPixel.
 
+    Live mode: the user watches the open window, which redraws once per call.
+    Draw ONE object or pass per script (at most 40 code lines; longer ones are
+    refused), then call again for the next piece, so something new appears
+    each step. Never paint a whole scene in one script.
+
     WARNING: this executes unrestricted code (including io/os access)
     on the host running Aseprite. Only pass scripts you trust.
 
@@ -36,6 +51,13 @@ async def run_lua_script(script: str, filename: str = "") -> str:
         return "Script cannot be empty"
     if filename and not os.path.exists(filename):
         return f"File {filename} not found"
+    lines = _code_lines(script)
+    if live.connected() and lines > MAX_LIVE_LINES:
+        return (f"Refused: {lines} lines of Lua in one call. The user is watching the "
+                "Aseprite window, which only updates between calls. Split this into "
+                f"several scripts of at most {MAX_LIVE_LINES} lines, one object or pass "
+                "each (e.g. sky, then hills, then the tree), and run them one after another. "
+                "Prefer dedicated tools (draw_rows, draw_rectangle_at, ...) where they fit.")
 
     success, output = AsepriteCommand.execute_lua_script(script, filename or None)
     if success:
