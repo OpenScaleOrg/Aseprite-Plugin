@@ -1,10 +1,14 @@
 {
   "name": "aseprite",
-  "version": "0.3.4",
-  "description": "Pixel art and animation in Aseprite, live in the open window: 125 MCP tools, 5 skills and 5 slash commands",
-  "author": { "name": "Suman Debnath" },
+  "version": "0.4.0",
+  "description": "Claude draws and animates pixel art live in your open Aseprite window: step by step, one Ctrl+Z per step. 125 tools for sprites, scenes, animation, palettes, dithering and spritesheet export, plus pixel-art skills and /pixel-* commands.",
+  "author": { "name": "Suman Debnath", "url": "https://github.com/OpenScaleOrg" },
   "homepage": "https://github.com/OpenScaleOrg/Aseprite-Plugin",
   "repository": "https://github.com/OpenScaleOrg/Aseprite-Plugin",
   "license": "MIT",
-  "keywords": ["aseprite", "pixel-art", "animation", "mcp"]
+  "keywords": [
+    "aseprite", "pixel-art", "pixel", "sprite", "spritesheet", "animation",
+    "gamedev", "game-assets", "tileset", "palette", "dithering", "lua",
+    "godot", "unity", "live", "mcp"
+  ]
 }

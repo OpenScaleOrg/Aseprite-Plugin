@@ -6,6 +6,8 @@ Claude draws and animates pixel art in [Aseprite](https://www.aseprite.org/), **
 
 This plugin packages [diivi/aseprite-mcp](https://github.com/diivi/aseprite-mcp) (MIT), adds live mode on top of it, and includes pixel-art skills.
 
+This page is the technical reference. For the overview, quick start, examples and troubleshooting, see the [main README](../../README.md).
+
 ## What's inside
 
 ```
