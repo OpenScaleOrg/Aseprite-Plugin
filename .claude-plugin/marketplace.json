@@ -1,0 +1,12 @@
+{
+  "name": "openscale",
+  "owner": { "name": "OpenScale", "url": "https://github.com/OpenScaleOrg" },
+  "metadata": { "description": "Claude Code plugins by OpenScale" },
+  "plugins": [
+    {
+      "name": "aseprite",
+      "source": "./plugins/aseprite",
+      "description": "Pixel art and animation in Aseprite, live in the open window"
+    }
+  ]
+}

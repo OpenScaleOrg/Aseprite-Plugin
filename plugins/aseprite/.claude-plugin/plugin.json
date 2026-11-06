@@ -1,0 +1,10 @@
+{
+  "name": "aseprite",
+  "version": "0.3.2",
+  "description": "Pixel art and animation in Aseprite, live in the open window: 125 MCP tools, 5 skills and 5 slash commands",
+  "author": { "name": "Suman Debnath" },
+  "homepage": "https://github.com/OpenScaleOrg/Aseprite-Plugin",
+  "repository": "https://github.com/OpenScaleOrg/Aseprite-Plugin",
+  "license": "MIT",
+  "keywords": ["aseprite", "pixel-art", "animation", "mcp"]
+}
